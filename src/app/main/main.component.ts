@@ -3,7 +3,6 @@ import { ActivatedRoute, RouterLink } from '@angular/router';
 import { Router } from "@angular/router";
 
 import * as configData from "../../assets/config.json"
-import { isNull } from 'util';
 
 @Component({
   selector: 'app-main',
@@ -54,7 +53,7 @@ export class MainComponent {
     }
 
     reboot() {
-      
+
     }
 
 }
