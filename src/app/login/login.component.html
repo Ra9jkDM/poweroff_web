@@ -1,0 +1,18 @@
+<div class="center">
+    <img [src]="image">
+    <h1>Login</h1>
+    <form #form="ngForm" (ngSubmit)="onSubmit(form)"> 
+        <div>
+            <select (change)="onCangeApi($event)">
+                <option *ngFor="let value of apiList; let i = index;" value="{{i}}">{{ value.name }}</option>
+            </select>
+        </div>
+        <div>
+            <input name="login" placeholder="Username" ngModel required>
+        </div>
+        <div>
+            <input name="password" type="password" placeholder="Password" ngModel required>
+        </div>
+        <button>Login</button>
+    </form>
+</div>
