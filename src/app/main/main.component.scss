@@ -13,3 +13,71 @@ button {
 button:last-child {
     margin-top: 20px;
 }
+
+@mixin black-white($x){
+    -webkit-filter: grayscale($x);
+    filter: grayscale($x);
+}
+
+
+
+@keyframes blink {
+    from {
+        @include black-white(0%);
+    }
+    50% {
+        @include black-white(100%);
+    }
+    to {
+        @include black-white(0%);
+    }
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0)
+    }
+    to {
+        transform: rotate(360deg)
+    }
+}
+
+
+.shutdown {
+    animation-name: blink;
+    animation-duration: 1.4s;
+    animation-iteration-count: infinite;
+}
+
+.reboot {
+    animation-name: spin;
+    animation-duration: 1.4s;
+    animation-iteration-count: infinite;
+}
+
+img {
+    text-decoration: line-through;
+    color: red;
+}
+
+#notification {
+    // display: none;
+    position: absolute;
+    width: 80%;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+
+    color: black;
+    background-color: #f5d633;
+    border: 3px solid black;
+    border-radius: 10px;
+
+    padding: 10px 0;
+}
+
+.none {
+    display: none;
+}
