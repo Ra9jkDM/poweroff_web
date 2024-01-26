@@ -4,6 +4,7 @@ import { ActivatedRoute, RouterLink } from '@angular/router';
 import { Router } from "@angular/router";
 import { CommonModule } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { LocalStorageService } from '../services/local-storage/local-storage.service';
 
 import * as configData from "../../assets/config.json"
 import {User} from "./user";
@@ -21,18 +22,14 @@ export class LoginComponent {
   id: number = 0
   apiList: any;
   image?: string; 
+  notification?: string = "none"
 
-  constructor(private route: ActivatedRoute,
-    private router: Router, private http: HttpClient) {
+  constructor(private route: ActivatedRoute, private router: Router, 
+    private http: HttpClient, private localStorage: LocalStorageService) {
       this.apiList = configData.api;
 
       this.changeImage(this.id);
     }
-
-  ngOnInit() {
-    console.log("test")
-    console.log(configData.api)
-  }
 
   onCangeApi(obj: any) {
     this.id = obj.target.value
@@ -49,13 +46,18 @@ export class LoginComponent {
     let url = this.apiList[this.id].api
     let user: User = new User(form.value.login, form.value.password)
     this.http.post<any>(url+"token", user.get(), 
-    {headers:{"Content-Type": "application/x-www-form-urlencoded"}}).subscribe(token => {
-      // console.log(token)
-      localStorage.setItem("id", this.id.toString())
-      localStorage.setItem("token", token.access_token)
+    {headers:{"Content-Type": "application/x-www-form-urlencoded"}}).subscribe({
+      next: (token) => {
+      console.log(token)
+      this.localStorage.saveData("id", this.id.toString())
+      this.localStorage.saveData("token", token.access_token)
 
       // console.log("now set", localStorage.getItem("token"))
       this.router.navigate([""])
+      },
+      error: (e) => {
+        this.showNotification()
+      }
     })
 
     // fetch("http://127.0.0.1:8000/token", {method: "POST",
@@ -69,6 +71,16 @@ export class LoginComponent {
     // console.log("now set", localStorage.getItem("token"))
 
     // this.router.navigate([""])
+  }
+  hide() {
+    this.hideNotification()
+  }
+
+  private showNotification() {
+    this.notification = "block"
+  }
+  private hideNotification() {
+    this.notification = "none"
   }
 }
 // https://jscrambler.com/blog/working-with-angular-local-storage

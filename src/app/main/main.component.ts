@@ -5,6 +5,7 @@ import { Router } from "@angular/router";
 import * as configData from "../../assets/config.json"
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { response } from 'express';
+import { LocalStorageService } from '../services/local-storage/local-storage.service';
 
 @Component({
   selector: 'app-main',
@@ -19,8 +20,8 @@ export class MainComponent {
   animation_class?: string
   notification?: string = "none"
 
-  constructor(private route: ActivatedRoute,
-    private router: Router, private http: HttpClient) {
+  constructor(private route: ActivatedRoute, private router: Router,
+     private http: HttpClient, private localStorage: LocalStorageService) {
       let id = this.getId()
 
       this.api = configData.api[id]
@@ -35,7 +36,7 @@ export class MainComponent {
     }
 
     logout() {
-      localStorage.removeItem("token")
+      this.localStorage.clearData()
       this.router.navigate(["/login"])
     }
 
@@ -48,7 +49,7 @@ export class MainComponent {
     }
 
     private getId() {
-      let tmp = localStorage.getItem("id")
+      let tmp = this.localStorage.getData("id")
       let str = tmp==null ? "0": tmp
       let id: number = parseInt(str)
 
@@ -60,7 +61,7 @@ export class MainComponent {
     }
 
     private getToken() {
-      return localStorage.getItem("token")
+      return this.localStorage.getData("token")
     }
 
     private get(path: string) {
