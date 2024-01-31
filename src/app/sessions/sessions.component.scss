@@ -1,0 +1,30 @@
+@import "../../colors.scss";
+
+.session {
+    border: 2px solid rgb(185, 184, 182);
+    border-radius: 10px;
+
+    // :first-child {
+    //     background-color: aquamarine;
+    // }
+
+    div {
+        display: inline-block;
+        padding-right: 20px;
+    }
+
+    button {
+        margin: 5px 0;
+        background-color: $red;
+    }
+}
+
+.session:first-child {
+    background-color: $violet;
+}
+
+#deleteAll {
+    background-color: $yellow;
+    width: 200px;
+    margin: 0;
+}

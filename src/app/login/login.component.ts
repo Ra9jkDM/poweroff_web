@@ -1,14 +1,14 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { RouterLink } from '@angular/router';
 import { Router } from "@angular/router";
 import { CommonModule } from '@angular/common';
 
 import {User} from "../services/auth/user";
 import { NotificationComponent } from '../notification/notification.component';
-import { LoginService } from '../services/auth/login.service'; 
 import { ApiService } from '../services/auth/api.service';
 import { ConfigService } from '../services/auth/config.service';
+import { AccountService } from '../services/auth/account.service';
 
 
 @Component({
@@ -27,8 +27,9 @@ export class LoginComponent {
   @ViewChild(NotificationComponent) 
   private notification!: NotificationComponent
 
-  constructor(private route: ActivatedRoute, private router: Router,  
-    private login: LoginService, private api: ApiService, private config: ConfigService) {
+  constructor(private router: Router,  
+    private api: ApiService, private config: ConfigService,
+    private account: AccountService) {
 
       this.changeImage()
     }
@@ -38,18 +39,18 @@ export class LoginComponent {
     this.changeImage()
   }
 
-  private changeImage() {
+  private async changeImage() {
     this.image = this.config.image
   }
 
   async onSubmit(form: NgForm) { 
     let user: User = new User(form.value.login, form.value.password)
-    let result = await this.login.login(user)
+    let result = await this.account.login(user)
+
     if (result) {
       this.router.navigate([""])
     } else {
-      this.notification.showNotification()
-    }
-    
+        this.notification.showNotification()
+    }   
   }
 }

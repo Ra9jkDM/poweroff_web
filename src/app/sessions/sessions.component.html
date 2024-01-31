@@ -1,0 +1,13 @@
+<div class="center">
+    <h1>Sessions</h1>
+    <div class="sessions">
+        <div class="session" *ngFor="let i of sessions">
+            <div>{{i.creation_date | date: "d MMM, yyyy - H:mm"}}</div>
+            <button (click)="delete(i.id)">Delete</button>
+        </div>
+    </div>
+    <button id="deleteAll" (click)="deleteAll()">Delete all except active</button> 
+    <button [routerLink]="''">Back</button>
+
+    <app-notification [info]="'It is not possible to perform the action'"></app-notification>
+</div>

@@ -1,17 +1,23 @@
+@import "../../colors.scss";
+
 #shutdown {
-    background-color: rgba(251, 57, 57, 0.98);
+    background-color: $red;
 }
 
 #reboot {
-    background-color: rgba(251, 222, 57, 0.98);
+    background-color: $yellow;
 }
 
 button {
-    margin: 5px 0;
+    margin: 5px;
 }
 
 button:last-child {
     margin-top: 20px;
+}
+
+#navigation {
+    margin-top: 30px;
 }
 
 @mixin black-white($x){

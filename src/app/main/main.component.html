@@ -1,12 +1,15 @@
 <div class="center">
     <img [src]="image" [class]="animation_class"/>
-    <h1>OrangePi</h1>
+    <h1>{{ name }}</h1>
     <button id="shutdown" (click)="shutdown()">Shutdown</button>
     <br>
     <button id="reboot" (click)="reboot()">Reboot</button>
     <br>
-    <!-- <a routerLink="/login">Logout</a> -->
-    <button (click)="logout()">Logout</button>
+    <div id="navigation">
+        <!-- <a routerLink="/login">Logout</a> -->
+        <button (click)="logout()">Logout</button>
+        <button [routerLink]="'sessions'">Sessions</button>
+    </div>
 
     <app-notification [info]="'It is not possible to perform the action'"></app-notification>
 </div>
