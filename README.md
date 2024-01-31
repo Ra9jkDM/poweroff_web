@@ -18,3 +18,9 @@ This application can shutdown or reboot servers. To to add servers need add new 
 
     npm install 
     ng serve
+
+# Screenshots
+
+![img](image/login.png)
+![img](image/main.png)
+![img](image/sessions.png)
