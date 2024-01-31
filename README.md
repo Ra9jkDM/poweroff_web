@@ -1,27 +1,20 @@
-# Web
+Web-angular application for api to test jwt tokens
+----
+This application can shutdown or reboot servers. To to add servers need add new record to ```src/assets/config.json```. Server images are stored in ```src/assets/img/*```.
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.0.9.
+#### In ```src/app/services``` stored all logic with JWT tokens interaction.
 
-## Development server
+- ```local-storage/local-storage``` - wrapper to use js localStorage
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+- ```auth/account``` - managing JWT tokens 
+    - can login on FastApi server
+    - can get new access_token when it spoiled, by refresh_token
+- ```auth/config``` and ```auth/api``` - logic associated with obtaining data about the api selected by the user
 
-## Code scaffolding
+- ```api/power``` and other - create new request to tha api
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
-## Build
+# Start
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+    npm install 
+    ng serve
