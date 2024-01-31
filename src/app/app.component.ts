@@ -7,11 +7,12 @@ import { RouterLink } from '@angular/router';
 import { MainComponent } from './main/main.component';
 import { LoginComponent } from './login/login.component';
 import { HttpClientModule } from '@angular/common/http';
+import { NotificationComponent } from './notification/notification.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, RouterLink, RouterLinkActive, HttpClientModule, LoginComponent, MainComponent],
+  imports: [CommonModule, RouterOutlet, RouterLink, RouterLinkActive, HttpClientModule, LoginComponent, MainComponent, NotificationComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })

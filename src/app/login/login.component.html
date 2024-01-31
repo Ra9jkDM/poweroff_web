@@ -4,7 +4,7 @@
     <form #form="ngForm" (ngSubmit)="onSubmit(form)"> 
         <div>
             <select (change)="onCangeApi($event)">
-                <option *ngFor="let value of apiList; let i = index;" value="{{i}}">{{ value.name }}</option>
+                <option *ngFor="let value of apiNames; let i = index;" value="{{i}}">{{ value }}</option>
             </select>
         </div>
         <div>
@@ -16,9 +16,5 @@
         <button>Login</button>
     </form>
 
-    <div id="notification" [class]="notification">
-        <h1>Error</h1>
-<pre>Unable to login to server</pre>
-        <button (click)="hide()">Ok</button>
-    </div>
+    <app-notification [info]="'Unable to login to server'"></app-notification>
 </div>
