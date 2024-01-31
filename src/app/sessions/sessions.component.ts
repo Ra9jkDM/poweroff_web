@@ -32,8 +32,6 @@ export class SessionsComponent {
       response.json().then((data) => {
         this.sessions = data
         this.sessions.sort(this.sortByDate)
-        
-        console.log(this.sessions)
       })
     }
   }
