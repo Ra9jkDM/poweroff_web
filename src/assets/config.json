@@ -4,12 +4,12 @@
         {
             "name": "OrangePi",
             "image": "orangepi.png",
-            "api": "http://localhost:8000/"
+            "api": "https://localhost:4010/"
         },
         {
             "name": "RaspberryPi",
             "image": "raspberrypi.png",
-            "api": "http://localhost:8000/"
+            "api": "https://localhost:4010/"
         }
     ],
     "imagePath": "assets/img/"
